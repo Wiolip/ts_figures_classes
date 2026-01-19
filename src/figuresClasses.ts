@@ -13,19 +13,11 @@ function roundDown(n: number): number {
 export class Triangle implements Figure {
   shape: 'triangle' = 'triangle';
 
-  color: 'red' | 'green' | 'blue';
-
-  private a: number;
-
-  private b: number;
-
-  private c: number;
-
   constructor(
-    color: 'red' | 'green' | 'blue',
-    a: number,
-    b: number,
-    c: number,
+    public color: 'red' | 'green' | 'blue',
+    private a: number,
+    private b: number,
+    private c: number,
   ) {
 
     if (a <= 0 || b <= 0 || c <= 0) {
@@ -57,11 +49,10 @@ export class Triangle implements Figure {
 export class Circle implements Figure {
   shape: 'circle' = 'circle';
 
-  color: 'red' | 'green' | 'blue';
-
-  private radius: number;
-
-  constructor(color: 'red' | 'green' | 'blue', radius: number) {
+  constructor(
+    public color: 'red' | 'green' | 'blue',
+    private radius: number
+  ) {
 
     if (radius <= 0) {
       throw new Error('Radius must be greater than 0');
@@ -81,13 +72,11 @@ export class Circle implements Figure {
 export class Rectangle implements Figure {
   shape: 'rectangle' = 'rectangle';
 
-  color: 'red' | 'green' | 'blue';
-
-  private width: number;
-  
-  private height: number;
-
-  constructor(color: 'red' | 'green' | 'blue', width: number, height: number) {
+  constructor(
+    public color: 'red' | 'green' | 'blue',
+    private width: number,
+    private height: number,
+  ) {
 
     if (width <= 0 || height <= 0) {
       throw new Error('Width and height must be greater than 0');
