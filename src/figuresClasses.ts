@@ -5,6 +5,11 @@ export interface Figure {
   getArea(): number;
 }
 
+//helper function
+function roundDown(n: number): number {
+  return Math.floor(n * 100) / 100;
+}
+
 export class Triangle implements Figure {
   shape: 'triangle' = 'triangle';
   color: 'red' | 'green' | 'blue';
@@ -12,17 +17,21 @@ export class Triangle implements Figure {
   private b: number;
   private c: number;
 
-  constructor(color: 'red' | 'green' | 'blue', a: number, b: number, c: number) {
-
-    if (a<=0 || b<=0 || c<=0) {
+  constructor(
+    color: 'red' | 'green' | 'blue',
+    a: number,
+    b: number,
+    c: number,
+  ) {
+    if (a <= 0 || b <= 0 || c <= 0) {
       throw new Error('All sides must be greater than 0');
     }
 
-    const max = Math.max(a,b,c);
-    const sumOthers = a +b + c - max;
+    const max = Math.max(a, b, c);
+    const sumOthers = a + b + c - max;
 
     if (max >= sumOthers) {
-      throw new Error('Invalid triangle sides');
+      throw new Error(`Sides ${a}, ${b} and ${c} can't form a triangle`);
     }
     this.color = color;
     this.a = a;
@@ -33,7 +42,7 @@ export class Triangle implements Figure {
   getArea(): number {
     const p = (this.a + this.b + this.c) / 2;
     const area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
-    return Math.round(area);
+    return roundDown(area);
   }
 
 }
@@ -55,7 +64,7 @@ export class Circle implements Figure {
   }
 
   getArea(): number {
-    return Math.round(Math.PI * this.radius * this.radius);
+    return roundDown(Math.PI * this.radius * this.radius);
   }
 
 }
@@ -77,11 +86,11 @@ export class Rectangle implements Figure {
   }
 
   getArea(): number {
-    return Math.round(this.width * this.height);
+    return roundDown(this.width * this.height);
   }
 
 }
 
 export function getInfo(figure: Figure): string {
-  return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`
+  return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
 }
