@@ -12,9 +12,13 @@ function roundDown(n: number): number {
 
 export class Triangle implements Figure {
   shape: 'triangle' = 'triangle';
+
   color: 'red' | 'green' | 'blue';
+
   private a: number;
+
   private b: number;
+
   private c: number;
 
   constructor(
@@ -52,7 +56,9 @@ export class Triangle implements Figure {
 
 export class Circle implements Figure {
   shape: 'circle' = 'circle';
+
   color: 'red' | 'green' | 'blue';
+
   private radius: number;
 
   constructor(color: 'red' | 'green' | 'blue', radius: number) {
@@ -74,8 +80,11 @@ export class Circle implements Figure {
 
 export class Rectangle implements Figure {
   shape: 'rectangle' = 'rectangle';
+
   color: 'red' | 'green' | 'blue';
+
   private width: number;
+  
   private height: number;
 
   constructor(color: 'red' | 'green' | 'blue', width: number, height: number) {
