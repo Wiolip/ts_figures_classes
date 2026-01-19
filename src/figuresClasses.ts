@@ -5,7 +5,7 @@ export interface Figure {
   getArea(): number;
 }
 
-//helper function
+// helper function
 function roundDown(n: number): number {
   return Math.floor(n * 100) / 100;
 }
@@ -23,6 +23,7 @@ export class Triangle implements Figure {
     b: number,
     c: number,
   ) {
+
     if (a <= 0 || b <= 0 || c <= 0) {
       throw new Error('All sides must be greater than 0');
     }
@@ -33,6 +34,7 @@ export class Triangle implements Figure {
     if (max >= sumOthers) {
       throw new Error(`Sides ${a}, ${b} and ${c} can't form a triangle`);
     }
+
     this.color = color;
     this.a = a;
     this.b = b;
@@ -42,11 +44,11 @@ export class Triangle implements Figure {
   getArea(): number {
     const p = (this.a + this.b + this.c) / 2;
     const area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
+
     return roundDown(area);
   }
 
 }
-
 
 export class Circle implements Figure {
   shape: 'circle' = 'circle';
@@ -64,11 +66,11 @@ export class Circle implements Figure {
   }
 
   getArea(): number {
+
     return roundDown(Math.PI * this.radius * this.radius);
   }
 
 }
-
 
 export class Rectangle implements Figure {
   shape: 'rectangle' = 'rectangle';
@@ -77,20 +79,24 @@ export class Rectangle implements Figure {
   private height: number;
 
   constructor(color: 'red' | 'green' | 'blue', width: number, height: number) {
+
     if (width <= 0 || height <= 0) {
       throw new Error('Width and height must be greater than 0');
     }
+
     this.color = color;
     this.width = width;
     this.height = height;
   }
 
   getArea(): number {
+
     return roundDown(this.width * this.height);
   }
 
 }
 
 export function getInfo(figure: Figure): string {
+
   return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
 }
